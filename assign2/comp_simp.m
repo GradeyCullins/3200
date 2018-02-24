@@ -1,11 +1,13 @@
-function res = comp_simp(f, a, b)
+function [res, err] = comp_simp(f, a, b, N)
     % COMP_TRAP Calculate the composite trapezoidal of a function f.    
     
     % Contains the different step interval sizes.
-    N = [17 33 65 129 257 513]; 
+%     N = [17 33 65 129 257 513]; 
     
     % Vector containing the results of diff. interp. runs.
     res = zeros(1, length(N));
+    
+    err = zeros(1, length(N));
     
     % Run the quadrature for each size in N.
     for n = 1:length(N)                
@@ -27,7 +29,10 @@ function res = comp_simp(f, a, b)
                 w_i = (2/3) * dx;
             end
             
-            res(n) = res(n) + w_i * polyval(f, x_i);
+%             res(n) = res(n) + w_i * polyval(f, x_i);
+            res(n) = res(n) + w_i * f(x_i);
+            
+            err(n) = (b - a) * dx^4 * 385.617 / 2880;
         end                                
     end
 end
