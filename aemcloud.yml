@@ -3,7 +3,7 @@ environments:
   - name: cs3200
     env: []
     author: true
-    publish: false
+    publish: 0
     aem_version: 6.4.2.0
     sample_content: false
     packages: []
